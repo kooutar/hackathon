@@ -1,0 +1,13 @@
+console.log('hiiiy');
+const express = require('express');
+const router = express.Router();
+const CandidateurController = require('../controllers/candidateurController');
+
+router.get('/:id', CandidateurController.getCandidature);
+router.post('/submit-inscription', (req, res, next) => {
+    console.log('Route POST /submit-inscription atteinte'); // Ajoutez cette ligne
+    next();
+}, CandidateurController.submitInscription);
+
+module.exports = router;
+

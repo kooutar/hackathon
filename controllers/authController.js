@@ -1,5 +1,4 @@
 const { db } = require('../config/db');
-
 exports.registerUser = (req, res) => {
   const { nom, prenom, telephone, email, adresse, profession, organisation, mot_de_passe } = req.body;
 
@@ -9,7 +8,7 @@ exports.registerUser = (req, res) => {
       console.error('Erreur lors de la vérification de l\'email :', err);
       return res.status(500).send('Erreur lors de la vérification de l\'email');
     }
-
+    
     if (results.length > 0) {
       console.log('Email existe déjà en base de données');
       req.flash('message', 'Email déjà enregistré !');

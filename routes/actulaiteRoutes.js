@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const actulaiteController = require('../controllers/actulaiteController');
 // Configuration de multer pour les fichiers uploadés
-const storage = multer.diskStorage({
+const storageEvent = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'public/uploads');
     },
@@ -12,11 +12,9 @@ const storage = multer.diskStorage({
       cb(null, Date.now() + path.extname(file.originalname));
     }
   });
-  const upload = multer({ storage });
+  const upload = multer({ storageEvent });
   
-  router.get('/evenement', (req, res) => {
-    res.render('evenement');
-  });
+// 
 
 router.get('/', actulaiteController.getActulaite);
 router.post('/', upload.single('imgActulaite'), (req, res, next) => {
